@@ -10,10 +10,15 @@ This lab simulates a small business network environment using VirtualBox, pfSens
 - All systems run in VirtualBox on a single host
 - pfSense manages routing, DHCP, DNS forwarding, and inter-VLAN access
 
+**Firewall:**
+| VLAN | Subnet           | Purpose             |
+|------|------------------|---------------------|
+| 0    | 192.168.1.0/24   | Internal Network Firewal |
+
 **VLANs:**
 | VLAN | Subnet           | Purpose             |
 |------|------------------|---------------------|
-| 1    | 192.168.12.0/24  | Infrastructure + DC |
+| 1    | 192.168.10.0/24  | Infrastructure + DC |
 | 2    | 192.168.20.0/24  | Clients (Sales)       |
 | 3    | 192.168.30.0/24  | Clients (HR) |
 | 4    | 192.168.40.0/24  | File Server (HR) |
@@ -29,7 +34,7 @@ This lab simulates a small business network environment using VirtualBox, pfSens
 
 -  pfSense enforces all inter-VLAN rules centrally
 -  All VMs route external traffic through pfSense NAT
--  All clients get DNS/GPO from DC01 (192.168.12.5)
+-  All clients get DNS/GPO from DC01 (192.168.10.5)
 -  Win10 (VLAN 2) **cannot access** File Server
 -  Win11 (VLAN 3) can access File Server (VLAN 4) on SMB/HTTPS
 
