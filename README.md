@@ -39,5 +39,6 @@ This lab simulates a small business network environment using VirtualBox, pfSens
 
 - Documentation and Diagramming
 - Firewall Policy Planning
+- Logical Topology Design
 - Logical Network Mapping
 - Network Segmentation Design
