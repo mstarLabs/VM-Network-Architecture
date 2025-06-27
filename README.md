@@ -22,13 +22,14 @@ This lab simulates a small business network environment using VirtualBox, pfSens
 
 ## Traffic Flow & Firewall Intent
 
-![Network Diagram](../../docs/network-diagrams/homelab_network_diagram_v1.png)
+<a href="https://github.com/mstarLabs/VM-Network-Architecture/blob/main/VM%20Network%20Architecture%20Diagram.png">Ref 1: VM Network Diagram</a>
 
--  Win11 (VLAN 3) can access File Server (VLAN 4) on SMB/HTTPS
--  Win10 (VLAN 2) **cannot access** File Server
--  All clients get DNS/GPO from DC01 (192.168.12.5)
--  All VMs route external traffic through pfSense NAT
+
 -  pfSense enforces all inter-VLAN rules centrally
+-  All VMs route external traffic through pfSense NAT
+-  All clients get DNS/GPO from DC01 (192.168.12.5)
+-  Win10 (VLAN 2) **cannot access** File Server
+-  Win11 (VLAN 3) can access File Server (VLAN 4) on SMB/HTTPS
 
 ---
 
