@@ -23,6 +23,16 @@ This lab simulates a small business network environment using VirtualBox, pfSens
 | 3    | 192.168.30.0/24  | Clients (HR) |
 | 4    | 192.168.40.0/24  | File Server (HR) |
 
+**VirtualBox Adapter Configuration (pfSense VM):**
+| Adapter | Network Mode  | VB Network Name  | Simulated VLAN | Purpose |
+|------|------------------|---------------------|-------------|---------|
+| 1    | NAT  | --- | WAN | Internet access (host)
+| 2    | Internal  | LabNet_Trunk  | Management | pfSense Web UI |
+| 3    | Internal  | LabNet_VLAN10 | VLAN10 | Infrastructure (DC01) |
+| 4    | Internal  | LabNet_VLAN20 | VLAN20 | Sales Client |
+
+*Note: VLAN3 and VLAN4 will be swapping adapter 3/4 for demo of HR clients able to reach HR File Server.
+
 ---
 
 ## Traffic Flow & Firewall Intent
