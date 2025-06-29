@@ -10,12 +10,16 @@ This lab simulates a small business network environment using VirtualBox, pfSens
 - All systems run in VirtualBox on a single host
 - pfSense manages routing, DHCP, DNS forwarding, and inter-VLAN access
 
-**Firewall:**
+---
+
+## Firewall & VLAN Design
+
+### pfSense WAN (Untagged)
 | VLAN | Subnet           | Purpose             |
 |------|------------------|---------------------|
 | 0    | 192.168.1.0/24   | Internal Network Firewal |
 
-**VLANs:**
+### VLANs (LAN Side)
 | VLAN | Subnet           | Purpose             |
 |------|------------------|---------------------|
 | 1    | 192.168.10.0/24  | Infrastructure + DC |
@@ -23,7 +27,9 @@ This lab simulates a small business network environment using VirtualBox, pfSens
 | 3    | 192.168.30.0/24  | Clients (HR) |
 | 4    | 192.168.40.0/24  | File Server (HR) |
 
-**VirtualBox Adapter Configuration (pfSense VM):**
+---
+
+## VirtualBox Adapter Configuration (pfSense VM):
 | Adapter | Network Mode  | VB Network Name  | Simulated VLAN | Purpose |
 |------|------------------|---------------------|-------------|---------|
 | 1    | NAT  | --- | WAN | Internet access (host)
@@ -31,7 +37,7 @@ This lab simulates a small business network environment using VirtualBox, pfSens
 | 3    | Internal  | LabNet_VLAN10 | VLAN10 | Infrastructure (DC01) |
 | 4    | Internal  | LabNet_VLAN20 | VLAN20 | Sales Client |
 
-*Note: VLAN3 and VLAN4 will be swapping adapter 3/4 for demo of HR clients able to reach HR File Server.
+> **Note:** VLAN 30 and 40 are demonstrated by reassigning Adapter 3/4 to `LabNet_VLAN30` and `LabNet_VLAN40` as needed. This simulates dynamic VLAN testing within VirtualBox's 4-adapter limit.
 
 ---
 
@@ -45,8 +51,8 @@ This lab simulates a small business network environment using VirtualBox, pfSens
 -  pfSense enforces all inter-VLAN rules centrally
 -  All VMs route external traffic through pfSense NAT
 -  All clients get DNS/GPO from DC01 (192.168.10.5)
--  Win10 (VLAN 2) **cannot access** File Server
--  Win11 (VLAN 3) can access File Server (VLAN 4) on SMB/HTTPS
+-  Win10 (VLAN 20) **cannot access** File Server (VLAN40)
+-  Win11 (VLAN 30) **can** access File Server (VLAN 40) on SMB/HTTPS
 
 ---
 
@@ -57,3 +63,4 @@ This lab simulates a small business network environment using VirtualBox, pfSens
 - Logical Topology Design
 - Logical Network Mapping
 - Network Segmentation Design
+- Virtualized Network Simulation
