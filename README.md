@@ -43,9 +43,9 @@ This project simulates a small business network environment using VirtualBox, pf
 
 ## Traffic Flow & Firewall Intent
 
-<a href="https://github.com/mstarLabs/VM-Network-Architecture/blob/main/VM%20Network%20Architecture%20Diagram.png">Ref 1: VM Network Diagram</a>
+<a href="https://github.com/mstarLabs/VM-Network-Architecture/blob/main/VM%20Network%20Architecture.png">Ref 1: VM Network Diagram</a>
+![VM Network Architecture](https://github.com/user-attachments/assets/8672ad2b-16bf-401e-a606-a360b705fb09)
 
-![VM Network Architecture Diagram](https://github.com/user-attachments/assets/694e47a3-2b25-47b8-a0b6-89b67c6abddd)
 
 
 -  pfSense enforces all inter-VLAN rules centrally
