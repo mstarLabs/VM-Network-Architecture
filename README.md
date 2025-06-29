@@ -17,7 +17,7 @@ This lab simulates a small business network environment using VirtualBox, pfSens
 ### pfSense WAN (Untagged)
 | VLAN | Subnet           | Purpose             |
 |------|------------------|---------------------|
-| 0    | 192.168.1.0/24   | Internal Network Firewal |
+| 0    | 192.168.1.0/24   | Internal Network Firewall |
 
 ### VLANs (LAN Side)
 | VLAN | Subnet           | Purpose             |
