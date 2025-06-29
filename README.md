@@ -1,6 +1,6 @@
 # VM-Network-Architecture
 
-This lab simulates a small business network environment using VirtualBox, pfSense, and multiple VLANs to isolate infrastructure, client, and server systems.
+This project simulates a small business network environment using VirtualBox, pfSense, and multiple VLANs to isolate infrastructure, client, and server systems.
 
 ---
 
