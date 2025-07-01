@@ -7,11 +7,15 @@ This project simulates a small business network environment using VirtualBox, pf
 ## Project Summary
  - Platform: VirtualBox
  - Tools: pfSense CE acting as the virtual firewall/router
- - Objective: Segment networks using VLAN-like isolation to simulate departmental boundaries, enforce inter-VLAN access policies, and demonstrate secure architecture.
+ - Objective: Segment networks using VLAN like isolation to simulate departmental boundaries, enforce inter-VLAN access policies, and demonstrate secure architecture.
 
 ---
 
 ## Network Overview
+
+<a href="https://github.com/mstarLabs/VM-Network-Architecture/blob/main/VM%20Network%20Architecture%20Diagram.png">Ref 1: VM Network Diagram</a>
+
+![VM Network Architecture Diagram](https://github.com/user-attachments/assets/c076820d-1fa0-4b73-bdb5-e2ce99c49035)
 
 ### pfSense WAN (Untagged)
 | VLAN | Subnet           | Purpose             |
@@ -46,7 +50,7 @@ This project simulates a small business network environment using VirtualBox, pf
 
 ### Network Segmentation & Lease Privilege
  - Each department is isolated into is own VLAN to minimize lateral movement risk.
- - Inter VLAN communication is restricted explicitly based on business needs.
+ - Inter-VLAN communication is restricted explicitly based on business needs.
 ### Explicit Firewall Policies
  - No "allow all" rules (except temporary testing allowances). Each service port is explicitly defined.
 > VLAN20_SALES only allows TCP 53, 135, 389, 445, etc., to the Domain Controller in VLAN10_INFRA.
@@ -57,18 +61,19 @@ This project simulates a small business network environment using VirtualBox, pf
  - All VLANs are firewall isolated.
  - Services such as DNS, NTP, AD DS run only on the INFRA VLAN reducing attack surface.
 
-
 ## Traffic Flow & Firewall Intent
 
-<a href="https://github.com/mstarLabs/VM-Network-Architecture/blob/main/VM%20Network%20Architecture%20Diagram.png">Ref 1: VM Network Diagram</a>
-
-![VM Network Architecture Diagram](https://github.com/user-attachments/assets/c076820d-1fa0-4b73-bdb5-e2ce99c49035)
-
--  pfSense enforces all inter-VLAN rules centrally
--  All VMs route external traffic through pfSense NAT
--  All clients get DNS/GPO from DC01 (192.168.10.5)
--  Win10 (VLAN 20) **cannot access** File Server (VLAN40)
--  Win11 (VLAN 30) **can** access File Server (VLAN 40) on SMB/HTTPS
+### Centralized Inspection
+ - pfSense enforces all inter-VLAN communication and routes external traffic via NAT.
+### Role-Based Access  
+  - Clients in VLAN20 (Sales) can only reach DC01 in VLAN10 on explicitly permitted ports (e.g. DNS, LDAP, Kerberos, RPC, SMB, NTP).  
+  - Clients in VLAN30 (HR) are similarly restricted and can access the File Server in VLAN40 on SMB/HTTPS only.
+### Layered Isolation  
+  - Traffic between Sales and File Server is blocked entirely — no lateral movement.  
+  - Administrative VLAN (VLAN10) has widest access only for essential services.
+### Fail-Safe Defaults  
+  - Any traffic not explicitly permitted (by source, destination, service) is blocked by default.  
+  - Temporary broad rules are used only for troubleshooting and are promptly removed once operational.
 
 ---
 
