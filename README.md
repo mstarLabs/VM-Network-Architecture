@@ -62,9 +62,7 @@ This project simulates a small business network environment using VirtualBox, pf
 
 <a href="https://github.com/mstarLabs/VM-Network-Architecture/blob/main/VM%20Network%20Architecture%20Diagram.png">Ref 1: VM Network Diagram</a>
 
-![VM Network Architecture](https://github.com/user-attachments/assets/8672ad2b-16bf-401e-a606-a360b705fb09)
-
-
+![VM Network Architecture Diagram](https://github.com/user-attachments/assets/c076820d-1fa0-4b73-bdb5-e2ce99c49035)
 
 -  pfSense enforces all inter-VLAN rules centrally
 -  All VMs route external traffic through pfSense NAT
