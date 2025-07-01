@@ -61,6 +61,8 @@ This project simulates a small business network environment using VirtualBox, pf
  - All VLANs are firewall isolated.
  - Services such as DNS, NTP, AD DS run only on the INFRA VLAN reducing attack surface.
 
+---
+
 ## Traffic Flow & Firewall Intent
 
 ### Centralized Inspection
