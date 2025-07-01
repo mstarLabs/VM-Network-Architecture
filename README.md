@@ -4,13 +4,6 @@ This project simulates a small business network environment using VirtualBox, pf
 
 ---
 
-## Project Summary
- - Platform: VirtualBox
- - Tools: pfSense CE acting as the virtual firewall/router
- - Objective: Segment networks using VLAN like isolation to simulate departmental boundaries, enforce inter-VLAN access policies, and demonstrate secure architecture.
-
----
-
 ## Network Overview
 
 <a href="https://github.com/mstarLabs/VM-Network-Architecture/blob/main/VM%20Network%20Architecture%20Diagram.png">Ref 1: VM Network Diagram</a>
