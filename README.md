@@ -4,15 +4,14 @@ This project simulates a small business network environment using VirtualBox, pf
 
 ---
 
-## Network Overview
-
-**Virtualized Environment:**  
-- All systems run in VirtualBox on a single host
-- pfSense manages routing, DHCP, DNS forwarding, and inter-VLAN access
+## Project Summary
+ - Platform: VirtualBox
+ - Tools: pfSense CE acting as the virtual firewall/router
+ - Objective: Segment networks using VLAN-like isolation to simulate departmental boundaries, enforce inter-VLAN access policies, and demonstrate secure architecture.
 
 ---
 
-## Firewall & VLAN Design
+## Network Overview
 
 ### pfSense WAN (Untagged)
 | VLAN | Subnet           | Purpose             |
@@ -27,9 +26,11 @@ This project simulates a small business network environment using VirtualBox, pf
 | 3    | 192.168.30.0/24  | Clients (HR) |
 | 4    | 192.168.40.0/24  | File Server (HR) |
 
----
+> Each VLAN is simulated via separate VirtualBox internal networks due to lack of 802.1Q tagging support.
+> pfSense acts as the default gateway and control point for all traffic between VLANs and to the internet.
+> DHCP is provisioned per VLAN segment to ensure network autonomy and proper IP assignment.
 
-## VirtualBox Adapter Configuration (pfSense VM):
+### VirtualBox Adapter Configuration (pfSense VM):
 | Adapter | Network Mode  | VB Network Name  | Simulated VLAN | Purpose |
 |------|------------------|---------------------|-------------|---------|
 | 1    | NAT  | --- | WAN | Internet access (host)
@@ -40,6 +41,22 @@ This project simulates a small business network environment using VirtualBox, pf
 > **Note:** VLAN 30 and 40 are demonstrated by reassigning Adapter 3/4 to `LabNet_VLAN30` and `LabNet_VLAN40` as needed. This simulates dynamic VLAN testing within VirtualBox's 4-adapter limit.
 
 ---
+
+## Security Design Principles
+
+### Network Segmentation & Lease Privilege
+ - Each department is isolated into is own VLAN to minimize lateral movement risk.
+ - Inter VLAN communication is restricted explicitly based on business needs.
+### Explicit Firewall Policies
+ - No "allow all" rules (except temporary testing allowances). Each service port is explicitly defined.
+> VLAN20_SALES only allows TCP 53, 135, 389, 445, etc., to the Domain Controller in VLAN10_INFRA.
+### Zero Trust Emulation
+ - VLAN boundaries act as security zones.
+ - Trust is not assumed; even internal flows are controlled based on roles/policies.
+### Defense in Depth
+ - All VLANs are firewall isolated.
+ - Services such as DNS, NTP, AD DS run only on the INFRA VLAN reducing attack surface.
+
 
 ## Traffic Flow & Firewall Intent
 
